@@ -50,10 +50,9 @@ div.item-produto{
     border-radius: 12px;
     padding: 10px;
     max-width: 800px;
-}
 
-div.item-produto:hover{
-    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.26);
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 div.item-produto > img{
@@ -70,10 +69,26 @@ div.item-produto > p{
     padding-bottom: 4px;
 }
 
-div.item-produto > p.item-produto-desconto{
+div.item-produto > p > span.older-price{
     text-decoration: line-through;
+    color: #1b0b0bbb;
 }
 
-div.item-produto > p.item-produto-desconto > strong {
-    text-decoration: none;
+div.item-produto > button{
+    background-color: var(--laranja);
+    border: 1px solid var(--marrom);
+    padding: 3px;
+    border-radius: 6px;
+    font-weight: bolder;
+}
+
+div.item-produto > button:hover {
+    box-shadow: 3px 3px 6px #1b0b0b5e;
+}
+
+footer{
+    background-color: var(--marrom);
+    color: var(--creme);
+    padding: 10px;
+    text-align: center;
 }
