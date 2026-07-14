@@ -1,6 +1,8 @@
 // Sistema de Carrinho
 let carrinho = [];
 const numeroWhatsApp = "5521967697037"; // Número da loja
+const VALOR_MINIMO = 30.00;
+
 
 function adicionarAoCarrinho(nome, preco) {
     const itemExistente = carrinho.find(item => item.nome === nome);
@@ -83,6 +85,19 @@ function atualizarCarrinho() {
 
     itensCarrinho.innerHTML = htmlItens;
     totalCarrinho.textContent = valorTotal.toFixed(2).replace('.', ',');
+
+    const avisoMinimo = document.getElementById('avisoMinimo');
+    const btnFinalizar = document.getElementById('btnFinalizar');
+
+    if (valorTotal < VALOR_MINIMO) {
+        const faltam = (VALOR_MINIMO - valorTotal).toFixed(2).replace('.', ',');
+        avisoMinimo.innerHTML = `⚠️ Faltam <strong>R$ ${faltam}</strong> para atingir o pedido mínimo de R$ ${VALOR_MINIMO.toFixed(2).replace('.', ',')}`;
+        avisoMinimo.style.display = 'block';
+        btnFinalizar.disabled = true;
+    } else {
+        avisoMinimo.style.display = 'none';
+        btnFinalizar.disabled = false;
+    }
 }
 
 function mostrarFeedback(nome) {
@@ -112,6 +127,13 @@ function fecharCarrinho() {
 function enviarWhatsApp() {
     if (carrinho.length === 0) {
         alert('Seu carrinho está vazio!');
+        return;
+    }
+
+    const valorTotal = carrinho.reduce((total, item) => total + (item.preco * item.quantidade), 0);
+
+    if (valorTotal < VALOR_MINIMO) {
+        alert(`Pedido mínimo de R$ ${VALOR_MINIMO.toFixed(2).replace('.', ',')}. Faltam R$ ${(VALOR_MINIMO - valorTotal).toFixed(2).replace('.', ',')}.`);
         return;
     }
 
