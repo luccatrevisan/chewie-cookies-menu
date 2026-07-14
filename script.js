@@ -138,7 +138,6 @@ function enviarWhatsApp() {
     }
 
     let mensagem = " *PEDIDO CHEWIE COOKIES* \n\n";
-    let valorTotal = 0;
 
     carrinho.forEach(item => {
         const subtotal = item.preco * item.quantidade;
