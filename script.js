@@ -141,7 +141,6 @@ function enviarWhatsApp() {
 
     carrinho.forEach(item => {
         const subtotal = item.preco * item.quantidade;
-        valorTotal += subtotal;
         mensagem += `▫️ ${item.quantidade}x ${item.nome}\n`;
         mensagem += `   R$ ${item.preco.toFixed(2).replace('.', ',')} cada = R$ ${subtotal.toFixed(2).replace('.', ',')}\n\n`;
     });
@@ -152,8 +151,11 @@ function enviarWhatsApp() {
 
     const mensagemCodificada = encodeURIComponent(mensagem);
     const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
-    
-    window.open(linkWhatsApp, '_blank');
+
+    const novaJanela = window.open(linkWhatsApp, '_blank');
+    if (!novaJanela) {
+        window.location.href = linkWhatsApp;
+    }
 }
 
 // Fechar modal clicando fora
