@@ -1,12 +1,12 @@
 // Sistema de Carrinho
 let carrinho = [];
 const numeroWhatsApp = "5521967697037"; // Número da loja
-const VALOR_MINIMO = 30.00;
+const VALOR_MINIMO = 25.00;
 
 
 function adicionarAoCarrinho(nome, preco) {
     const itemExistente = carrinho.find(item => item.nome === nome);
-    
+
     if (itemExistente) {
         itemExistente.quantidade += 1;
     } else {
@@ -16,7 +16,7 @@ function adicionarAoCarrinho(nome, preco) {
             quantidade: 1
         });
     }
-    
+
     atualizarCarrinho();
     mostrarFeedback(nome);
 }
@@ -45,7 +45,7 @@ function atualizarCarrinho() {
 
     const itensCarrinho = document.getElementById('itensCarrinho');
     const totalCarrinho = document.getElementById('totalCarrinho');
-    
+
     if (carrinho.length === 0) {
         itensCarrinho.innerHTML = `
             <div class="carrinho-vazio">
@@ -63,7 +63,7 @@ function atualizarCarrinho() {
     carrinho.forEach(item => {
         const subtotal = item.preco * item.quantidade;
         valorTotal += subtotal;
-        
+
         htmlItens += `
             <div class="item-carrinho">
                 <div class="item-info">
@@ -107,7 +107,7 @@ function mostrarFeedback(nome) {
             botao.classList.add('sucesso-animacao');
             const textoOriginal = botao.textContent;
             botao.textContent = '✅ Adicionado!';
-            
+
             setTimeout(() => {
                 botao.textContent = textoOriginal;
                 botao.classList.remove('sucesso-animacao');
